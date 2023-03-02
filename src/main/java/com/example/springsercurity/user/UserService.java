@@ -7,9 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -30,7 +28,7 @@ public class UserService {
 
     public Optional<UserCredentialsDto> findCredentialsByEmail(String email) {
         return userRepository.findByEmail(email)
-                .map(UserCredentialDtoMapper::map);
+                .map(UserCredentialDtoMapper::mapToUserCredentialsDto);
     }
 
     public List<String> findAllUserEmails() {
